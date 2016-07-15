@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Nosthertus/diet-static-stream#readme",
   "dependencies": {
-    "flutils": "^0.5.2"
+    "flutils": "^0.5.2",
+    "mime": "^1.3.4"
   }
 }

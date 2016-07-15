@@ -18,12 +18,15 @@ module.exports = function(options){
 
 		// Find the requested file
 		if(file = fileLib.findFile(dir)){
-			var readStream = fs.createReadStream(file);
+			var readStream = fs.createReadStream(file.dir);
 
+			// Send file when opens
 			readStream.on("open", function(){
+				$.header("Content-Type", file.mime);
 				readStream.pipe($.response);
 			});
 
+			// Send an error when something failes
 			readStream.on("error", function(err){
 				$.end(err);
 			});
