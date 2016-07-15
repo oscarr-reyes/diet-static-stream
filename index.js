@@ -22,6 +22,7 @@ module.exports = function(options){
 
 			// Send file when opens
 			readStream.on("open", function(){
+				$.status("200");
 				$.header("Content-Type", file.mime);
 				readStream.pipe($.response);
 			});
@@ -32,8 +33,9 @@ module.exports = function(options){
 			});
 		}
 
-		else {
-			$.end();
+		else{
+			$.status("404");
+			$.end("Page Not Found");
 		}
 	}
 }
