@@ -1,0 +1,27 @@
+{
+  "name": "diet-static-stream",
+  "version": "0.1.0",
+  "description": "Serve static files through straming objects for Diet.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nosthertus/diet-static-stream.git"
+  },
+  "keywords": [
+    "diet",
+    "static",
+    "stream"
+  ],
+  "author": "Nosthertus <nosthertus@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nosthertus/diet-static-stream/issues"
+  },
+  "homepage": "https://github.com/Nosthertus/diet-static-stream#readme",
+  "dependencies": {
+    "flutils": "^0.5.2"
+  }
+}
