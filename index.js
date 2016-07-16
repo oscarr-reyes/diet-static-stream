@@ -33,6 +33,7 @@ module.exports = function(options){
 			});
 		}
 
+		// The requested file was not found, send 404
 		else{
 			$.status("404");
 			$.end("Page Not Found");
