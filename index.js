@@ -24,6 +24,7 @@ module.exports = function(options){
 			readStream.on("open", function(){
 				$.status("200");
 				$.header("Content-Type", file.mime);
+				$.header("Cache-Control", module.CONST.OPTIONS.cache);
 				readStream.pipe($.response);
 			});
 
