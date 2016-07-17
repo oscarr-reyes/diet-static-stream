@@ -2,7 +2,7 @@
 Serve static files through streaming objects for Diet.js
 ## Installation
 ```bash
-$npm install diet-static-stream
+$ npm install diet-static-stream
 ```
 ## Usage
 ```Javascript
@@ -29,11 +29,22 @@ Path where `diet-static-stream` will serve the files
 
 * * *
 
-**index [String] - Optional (Default: index)**
+**index [String|Boolean] - Optional (Default: index)**
 
 Filename to look when there is no extension especified in the request
+
+if value is Boolean, it will search for index file as default if true, otherwise if false, it will not do automatic search for an index file
+
 ```HTTP
+#When value is boolean and it's true
 GET: www.example.com/images -> Server/static/images/index.html
+
+#When value is boolean and it's false
+GET: www.example.com/images -> Server/static/images.html
+
+#Otherwise if value is string, search for provided filename as index
+#Value: main
+GET: www.example.com/images -> Server/static/images/main.html
 ```
 * * *
 
