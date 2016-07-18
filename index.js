@@ -14,10 +14,12 @@ module.exports = function(options){
 
 	return function($){
 		var dir = path.join(module.CONST.OPTIONS.path, $.url.pathname);
-		var file;
-
+		
 		// Find the requested file
-		if(file = fileLib.findFile(dir)){
+		var file = fileLib.findFile(dir);
+		
+		// If directory is file
+		if(file.file){
 			var readStream = fs.createReadStream(file.dir);
 
 			// Send file when opens
