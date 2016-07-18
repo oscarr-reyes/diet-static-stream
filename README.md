@@ -56,6 +56,28 @@ GET: www.example.com/images.html -> Server/static/images.html
 GET: www.example.com/images -> Server/static/images.html OR Server/static/images/index.html according to index property
 ```
 
+* * *
+
+**cache [String] - Optional (Default: max-age=3600)**
+
+Control-Cache value to set in header response
+
+* * *
+
+**scriptName [Boolean] - Optional (Default: false)**
+
+Whether require extension file on the request, if true `defaultExt` and `index` options will be ignored
+
+```HTTP
+#Value: true
+GET: www.example.com/images -> Server/static/images #404 not found
+GET: www.example.com/images/user_placeholder.jpg -> Server/static/images/user_placeholder.jpg #200 Found
+
+#Value: false
+#Find according to index and defaultExt values
+GET: www.example.com/images -> Server/static/images/index.html
+```
+
 ## F.A.Q
 **What is the difference between diet-static and this one?**
 
