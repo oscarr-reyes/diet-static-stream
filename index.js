@@ -19,7 +19,7 @@ module.exports = function(options){
 		var file = fileLib.findFile(dir);
 		
 		// If directory is file
-		if(file.file){
+		if(file != null && file.file){
 			var readStream = fs.createReadStream(file.dir);
 
 			// Send file when opens
