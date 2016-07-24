@@ -48,7 +48,7 @@ GET: www.example.com/images -> Server/static/images/main.html
 ```
 * * *
 
-**defaultExt [String] - Optional (Default: html)**
+**defaultExtension [String] - Optional (Default: html)**
 
 Extension to look when there is no extension on the request
 ```HTTP
