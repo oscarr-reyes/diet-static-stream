@@ -1,0 +1,128 @@
+{
+	"benchmark": {
+		"Resolve time":{
+			"diet-static":{
+				"small - 1mb":{
+					"test #1": "1.126ms",
+					"test #2": "0.824ms",
+					"test #3": "0.698ms",
+					"test #4": "0.611ms",
+					"test #4": "0.488ms"
+				},
+				"medium - 10mb":{
+					"test #1": "4.068ms",
+					"test #2": "3.105ms",
+					"test #3": "2.673ms",
+					"test #4": "2.666ms",
+					"test #5": "2.587ms"
+				},
+				"heavy - 500mb":{
+					"test #1": "163.765ms",
+					"test #2": "149.548ms",
+					"test #3": "155.279ms",
+					"test #4": "164.162ms",
+					"test #5": "146.567ms"
+				},
+				"very-heavy - 1gb":{
+					"test #1": "349.680ms",
+					"test #2": "386.070ms",
+					"test #3": "385.951ms",
+					"test #4": "388.013ms",
+					"test #5": "1078.873ms"
+				}
+			},
+			"diet-static-stream":{
+				"small - 1mb": {
+					"test #1": "0.668ms",
+					"test #2": "0.376ms",
+					"test #3": "0.227ms",
+					"test #4": "0.217ms",
+					"test #5": "0.539ms"
+				},
+				"medium - 10mb":{
+					"test #1": "0.177ms",
+					"test #2": "0.180ms",
+					"test #3": "0.342ms",
+					"test #4": "0.748ms",
+					"test #5": "1.343ms"
+				},
+				"heavy - 500mb":{
+					"test #1": "0.616ms",
+					"test #2": "0.297ms",
+					"test #3": "1.284ms",
+					"test #4": "1.741ms",
+					"test #5": "1.110ms"
+				},
+				"very-heavy - 1gb":{
+					"test #1": "1.017ms",
+					"test #2": "0.690ms",
+					"test #3": "1.117ms",
+					"test #4": "1.589ms",
+					"test #5": "2.567ms"
+				}
+			}
+		},
+		"Response Time":{
+			"diet-static":{
+				"small - 1mb":{
+					"test #1": "2.174ms",
+					"test #2": "0.846ms",
+					"test #3": "0.981ms",
+					"test #4": "0.688ms",
+					"test #5": "0.524ms",
+				},
+				"medium - 10mb":{
+					"test #1": "4.461ms",
+					"test #2": "3.333ms",
+					"test #3": "2.902ms",
+					"test #4": "3.124ms",
+					"test #5": "2.842ms",
+				},
+				"heavy - 500ms":{
+					"test #1": "166.425ms",
+					"test #2": "160.152ms",
+					"test #3": "165.332ms",
+					"test #4": "172.023ms",
+					"test #5": "1088.219ms",
+				},
+				"very-heavy - 1gb":{
+					"test #1": "422.551ms",
+					"test #2": "451.008ms",
+					"test #3": "446.455ms",
+					"test #4": "462.208ms",
+					"test #5": "1548.656ms",
+				}
+			},
+			"diet-static-stream":{
+				"small - 1mb":{
+					"test #1": "0.692ms",
+					"test #2": "0.401ms",
+					"test #3": "0.232ms",
+					"test #4": "0.229ms",
+					"test #5": "0.549ms",
+				},
+				"medium - 10mb":{
+					"test #1": "0.182ms",
+					"test #2": "0.384ms",
+					"test #3": "0.349ms",
+					"test #4": "0.750ms",
+					"test #5": "1.352ms",
+				},
+				"heavy - 500mb":{
+					"test #1": "0.623ms",
+					"test #2": "0.316ms",
+					"test #3": "1.312ms",
+					"test #4": "1.781ms",
+					"test #5": "1.121ms",
+				},
+				"very-heavy - 1gb":{
+					"test #1": "1.051ms",
+					"test #2": "0.701ms",
+					"test #3": "1.125ms",
+					"test #4": "1.624ms",
+					"test #5": "2.842ms",
+				}
+			}
+		}
+	}
+}
