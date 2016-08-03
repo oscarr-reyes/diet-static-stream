@@ -82,10 +82,10 @@ GET: www.example.com/images -> Server/static/images/index.html
 As explained before, both `diet-static` and `diet-static-stream` achieves the same end for sending static data to the client, due to the time it takes to make the data available to the client, i have made 2 phases which are:
 
 * Resolve Time 
-Resolve time is based on how long does the server take to make data available and start sending to client
+Resolve time is based on how long does the server take to make data available and start sending to client, this process was done by using `console.time()` right before the module starts loading the file, `console.timeEnd()` is executed when the module starts sending.
 
 * Response Time
-Response time is based on how long the client waits for the server to start recieving the requested data, this depends on latency and mostly `Resolve Time` on server
+Response time is based on how long the client waits for the server to start recieving the requested data, this depends on latency and mostly `Resolve Time` on server, this process was achieved by using the comand `cURL`
 
 The tests were done using fake files create from `fallocate` on `Linux`, the tests were done with this specs:
 
