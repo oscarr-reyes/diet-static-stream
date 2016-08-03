@@ -78,6 +78,23 @@ GET: www.example.com/images/user_placeholder.jpg -> Server/static/images/user_pl
 GET: www.example.com/images -> Server/static/images/index.html
 ```
 
+## Benchmark Comparison
+As explained before, both `diet-static` and `diet-static-stream` achieves the same end for sending static data to the client, due to the time it takes to make the data available to the client, i have made 2 phases which are:
+
+* Resolve Time 
+Resolve time is based on how long does the server take to make data available and start sending to client
+
+* Response Time
+Response time is based on how long the client waits for the server to start recieving the requested data, this depends on latency and mostly `Resolve Time` on server
+
+The tests were done using fake files create from `fallocate` on `Linux`, the tests were done with this specs:
+
+* OS: Linux/Debian Ubuntu 16.04 x64
+* RAM: 4gb x 2 1600mhz
+* HDD: 256gb 7200rpm
+
+![Benchmark-Comparison](http://i.imgur.com/BHbZHGq.png)
+
 ## F.A.Q
 **What is the difference between diet-static and this one?**
 
