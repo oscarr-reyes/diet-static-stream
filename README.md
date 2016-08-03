@@ -90,6 +90,7 @@ Response time is based on how long the client waits for the server to start reci
 The tests were done using fake files create from `fallocate` on `Linux`, the tests were done with this specs:
 
 * OS: Linux/Debian Ubuntu 16.04 x64
+* CPU: Intel Core I5 3.30GHz
 * RAM: 4gb x 2 1600mhz
 * HDD: 256gb 7200rpm
 
