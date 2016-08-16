@@ -29,6 +29,7 @@
   "devDependencies": {
     "diet": "^0.10.8",
     "expect": "^1.20.2",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "supertest": "^2.0.0"
   }
 }
