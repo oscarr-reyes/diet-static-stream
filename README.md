@@ -105,5 +105,16 @@ But what happens when you use it on a server that has hundreds of requests for m
 
 This package uses stream objects for sending chunks of data when they are being on read, this does not load data into the memory and we can avoid memory overload for hundreds of requests
 
+##Test
+You can test the module by executing these commands:
+```SH
+$ npm test
+```
+
+if you have mocha globally installed:
+```SH
+$ mocha
+```
+
 ##License
 MIT
