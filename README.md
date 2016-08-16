@@ -1,4 +1,5 @@
 # diet-static-stream
+[![Build Status](https://travis-ci.org/Nosthertus/diet-static-stream.svg?branch=master)](https://travis-ci.org/Nosthertus/diet-static-stream)
 Serve static files through streaming objects for Diet.js
 ## Installation
 ```bash
