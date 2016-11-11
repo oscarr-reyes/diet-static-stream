@@ -1,6 +1,6 @@
 {
   "name": "diet-static-stream",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Serve static files through straming objects for Diet.js",
   "main": "index.js",
   "scripts": {
