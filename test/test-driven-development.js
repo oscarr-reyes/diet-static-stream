@@ -84,4 +84,12 @@ describe("file functions", function(){
 			dir: path.join(dir, "index.html")
 		});
 	});
+
+	it("should contain file stats properly", function(){
+		// File does not exist so stats should be null
+		expect(file.parseDir("path/to/file.js").stats).toBe(null);
+
+		// File does exists, stats should be an object
+		expect(file.parseDir("test/static/index.html").stats).toNotBe(null);
+	});
 });
