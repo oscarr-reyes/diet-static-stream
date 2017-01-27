@@ -8,12 +8,19 @@ module.CONST = {
 	OPTIONS: null
 };
 
+var opts;
+
 module.exports = function(options){
 	// Define Constant options
-	module.CONST.OPTIONS = helper.parseOptions(options);
+	module.CONST.OPTIONS = opts = helper.parseOptions(options);
 
 	return function($){
-		var dir = path.join(module.CONST.OPTIONS.path, $.url.pathname);
+		// Execute resolve request if passed
+		if(opts.resolve && opts.resolve.request){
+			opts.resolve.request($);
+		}
+		
+		var dir = path.join(opts.path, $.url.pathname);
 		
 		// Find the requested file
 		var file = fileLib.findFile(dir);
@@ -31,14 +38,23 @@ module.exports = function(options){
 
 			// send 304 if file was not modified
 			else{
+				// Execute resolve cached if passed
+				if(opts.resolve && opts.resolve.cached){
+					opts.resolve.cached($);
+				}
+
 				$.status("304");
 				$.end();
 			}
-
 		}
 
 		// The requested file was not found, send 404
 		else{
+			// Execute resolve fail if passed
+			if(opts.resolve && opts.resolve.fail){
+				opts.resolve.fail($);
+			}
+
 			$.status("404");
 			$.end("Page Not Found");
 		}
@@ -55,10 +71,25 @@ function sendFile($, file){
 	var readStream = fs.createReadStream(file.dir);
 	// Send file when opens
 	readStream.on("open", function(){
+		// Default headers
+		var headers = {
+			"Content-Type": file.mime,
+			"Cache-Control": opts.cache,
+			"Last-Modified": new Date(file.stats.mtime).toUTCString()
+		};
+
 		$.status("200");
-		$.header("Content-Type", file.mime);
-		$.header("Cache-Control", module.CONST.OPTIONS.cache);
-		$.header("Last-Modified", new Date(file.stats.mtime).toUTCString());
+
+		// Execute resolve function if defined in options
+		if(opts.resolve && opts.resolve.success){
+			opts.resolve.success($, headers, file);
+		}
+
+		// Set all headers included with resolve
+		for(h in headers){
+			$.header(h, headers[h]);
+		}
+
 		readStream.pipe($.response);
 	});
 	
