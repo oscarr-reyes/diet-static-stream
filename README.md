@@ -78,6 +78,24 @@ GET: www.example.com/images/user_placeholder.jpg -> Server/static/images/user_pl
 GET: www.example.com/images -> Server/static/images/index.html
 ```
 
+* * *
+
+**hook [Object] - Optional**
+
+If there is a need for hooks on request, this is handy for setting custom headers or any other change necessary, this property is a map of events that's executed in certain process
+
+* **request [Function] ($: Signal) - Optional**
+Request hook is executed just when module starts, before the file is searched, the signal `$` is the request response passed from the middleware
+
+* **success [Function] ($: Signal, headers: Object, file: Object) - Optional**
+Success hook is executed when the file is successfully opened, this function injects `$` signal along with `headers` as default headers set for the file found and `file` as object that contains the property used for the stream
+
+* **fail [Function] ($: Signal) - Optional**
+Fail hook is executed when the requested file was not found, right before responding `404`, the signal `$` is passed from the middleware
+
+* **cached [Function] ($: Signal) - Optional**
+Cached hook is executed when the requested file was found but it was not modified since the last request, making the response to be `304`, the signal `$` is passed from the middleware
+
 ## Benchmark Comparison
 As explained before, both `diet-static` and `diet-static-stream` achieves the same end for sending static data to the client, due to the time it takes to make the data available to the client, i have made 2 phases which are:
 
