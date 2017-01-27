@@ -10,7 +10,21 @@ describe("server response", function(){
 		app.listen(8080);
 
 		app.footer(stream({
-			path: "test/static"
+			path: "test/static",
+			hook: {
+				request: function($){
+					$.header("x-hook-request", "true");
+				},
+				success: function($, headers, file){
+					headers["x-hook-success"] = "true";
+				},
+				fail: function($){
+					$.header("x-hook-fail", "true");
+				},
+				cached: function($){
+					$.header("x-hook-cached", "true");
+				}
+			}
 		}));
 	});
 
@@ -28,4 +42,24 @@ describe("server response", function(){
 		request("http://localhost:8080").get("/file.rand")
 			.expect(404, done);
 	});
-})
+
+	describe("hook executed", function(){
+		it("should respond with request executed", function(done){
+			request("http://localhost:8080").get("/index.html")
+				.expect("x-hook-request", "true")
+				.expect(200, done);
+		});
+
+		it("should respond with success executed", function(done){
+			request("http://localhost:8080").get("/index.html")
+				.expect("x-hook-success", "true")
+				.expect(200, done);
+		});
+
+		it("should respond with fail executed", function(done){
+			request("http://localhost:8080").get("/file.rand")
+				.expect("x-hook-fail", "true")
+				.expect(404, done);
+		});
+	});
+});

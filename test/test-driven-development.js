@@ -26,6 +26,26 @@ describe("helper functions", function(){
 			helper.parseOptions({});
 		}).toThrow("Path for static files is undefined");
 
+		expect(function(){
+			helper.parseOptions({path: "static", hook: "test"});
+		}).toThrow("Hook must be a map object");
+
+		expect(function(){
+			helper.parseOptions({path: "static", hook: {request: "test"}});
+		}).toThrow("Hook request must be a function");
+
+		expect(function(){
+			helper.parseOptions({path: "static", hook: {success: "test"}});
+		}).toThrow("Hook success must be a function");
+
+		expect(function(){
+			helper.parseOptions({path: "static", hook: {fail: "test"}});
+		}).toThrow("Hook fail must be a function");
+
+		expect(function(){
+			helper.parseOptions({path: "static", hook: {cached: "test"}});
+		}).toThrow("Hook cached must be a function");
+
 		expect(helper.parseOptions({path: "static"})).toIncludeKeys([
 			"path",
 			"index",
