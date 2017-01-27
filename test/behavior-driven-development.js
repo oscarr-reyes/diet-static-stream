@@ -11,18 +11,18 @@ describe("server response", function(){
 
 		app.footer(stream({
 			path: "test/static",
-			resolve: {
+			hook: {
 				request: function($){
-					$.header("x-resolve-request", "true");
+					$.header("x-hook-request", "true");
 				},
 				success: function($, headers, file){
-					headers["x-resolve-success"] = "true";
+					headers["x-hook-success"] = "true";
 				},
 				fail: function($){
-					$.header("x-resolve-fail", "true");
+					$.header("x-hook-fail", "true");
 				},
 				cached: function($){
-					$.header("x-resolve-cached", "true");
+					$.header("x-hook-cached", "true");
 				}
 			}
 		}));
@@ -43,22 +43,22 @@ describe("server response", function(){
 			.expect(404, done);
 	});
 
-	describe("resolve executed", function(){
+	describe("hook executed", function(){
 		it("should respond with request executed", function(done){
 			request("http://localhost:8080").get("/index.html")
-				.expect("x-resolve-request", "true")
+				.expect("x-hook-request", "true")
 				.expect(200, done);
 		});
 
 		it("should respond with success executed", function(done){
 			request("http://localhost:8080").get("/index.html")
-				.expect("x-resolve-success", "true")
+				.expect("x-hook-success", "true")
 				.expect(200, done);
 		});
 
 		it("should respond with fail executed", function(done){
 			request("http://localhost:8080").get("/file.rand")
-				.expect("x-resolve-fail", "true")
+				.expect("x-hook-fail", "true")
 				.expect(404, done);
 		});
 	});

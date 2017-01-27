@@ -16,8 +16,8 @@ module.exports = function(options){
 
 	return function($){
 		// Execute resolve request if passed
-		if(opts.resolve && opts.resolve.request){
-			opts.resolve.request($);
+		if(opts.hook && opts.hook.request){
+			opts.hook.request($);
 		}
 		
 		var dir = path.join(opts.path, $.url.pathname);
@@ -39,8 +39,8 @@ module.exports = function(options){
 			// send 304 if file was not modified
 			else{
 				// Execute resolve cached if passed
-				if(opts.resolve && opts.resolve.cached){
-					opts.resolve.cached($);
+				if(opts.hook && opts.hook.cached){
+					opts.hook.cached($);
 				}
 
 				$.status("304");
@@ -51,8 +51,8 @@ module.exports = function(options){
 		// The requested file was not found, send 404
 		else{
 			// Execute resolve fail if passed
-			if(opts.resolve && opts.resolve.fail){
-				opts.resolve.fail($);
+			if(opts.hook && opts.hook.fail){
+				opts.hook.fail($);
 			}
 
 			$.status("404");
@@ -81,8 +81,8 @@ function sendFile($, file){
 		$.status("200");
 
 		// Execute resolve function if defined in options
-		if(opts.resolve && opts.resolve.success){
-			opts.resolve.success($, headers, file);
+		if(opts.hook && opts.hook.success){
+			opts.hook.success($, headers, file);
 		}
 
 		// Set all headers included with resolve

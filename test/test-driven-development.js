@@ -27,24 +27,24 @@ describe("helper functions", function(){
 		}).toThrow("Path for static files is undefined");
 
 		expect(function(){
-			helper.parseOptions({path: "static", resolve: "test"});
-		}).toThrow("Resolve must be a map object");
+			helper.parseOptions({path: "static", hook: "test"});
+		}).toThrow("Hook must be a map object");
 
 		expect(function(){
-			helper.parseOptions({path: "static", resolve: {request: "test"}});
-		}).toThrow("Resolve request must be a function");
+			helper.parseOptions({path: "static", hook: {request: "test"}});
+		}).toThrow("Hook request must be a function");
 
 		expect(function(){
-			helper.parseOptions({path: "static", resolve: {success: "test"}});
-		}).toThrow("Resolve success must be a function");
+			helper.parseOptions({path: "static", hook: {success: "test"}});
+		}).toThrow("Hook success must be a function");
 
 		expect(function(){
-			helper.parseOptions({path: "static", resolve: {fail: "test"}});
-		}).toThrow("Resolve fail must be a function");
+			helper.parseOptions({path: "static", hook: {fail: "test"}});
+		}).toThrow("Hook fail must be a function");
 
 		expect(function(){
-			helper.parseOptions({path: "static", resolve: {cached: "test"}});
-		}).toThrow("Resolve cached must be a function");
+			helper.parseOptions({path: "static", hook: {cached: "test"}});
+		}).toThrow("Hook cached must be a function");
 
 		expect(helper.parseOptions({path: "static"})).toIncludeKeys([
 			"path",
