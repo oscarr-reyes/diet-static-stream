@@ -3,6 +3,7 @@ var path    = require("path");
 var flutils = require("flutils");
 var fileLib = require("./lib/file");
 var fs      = require("fs");
+var utils   = require("utils-pkg");
 
 module.CONST = {
 	OPTIONS: null
@@ -79,6 +80,21 @@ function sendFile($, file){
 		};
 
 		$.status("200");
+
+		// Set the cache value from the provided function
+		if(utils.isFunction(opts.cache)){
+			var result = opts.cache($);
+
+			if(result != false){
+				headers["Cache-Control"] = result;
+			}
+
+			// Remove the cache headers if function returns false
+			else{
+				delete headers["Cache-Control"];
+				delete headers["Last-Modified"];
+			}
+		}
 
 		// Execute resolve function if defined in options
 		if(opts.hook && opts.hook.success){

@@ -1,5 +1,6 @@
-var diet = require("diet");
-var stream = require("../index.js");
+var diet    = require("diet");
+var expect  = require("expect");
+var stream  = require("../index.js");
 var request = require("supertest");
 
 describe("server response", function(){
@@ -24,6 +25,13 @@ describe("server response", function(){
 				cached: function($){
 					$.header("x-hook-cached", "true");
 				}
+			},
+			cache: function($){
+				if($.url.pathname == "/index.html"){
+					return "max-age=36";
+				}
+
+				return false;
 			}
 		}));
 	});
@@ -60,6 +68,28 @@ describe("server response", function(){
 			request("http://localhost:8080").get("/file.rand")
 				.expect("x-hook-fail", "true")
 				.expect(404, done);
+		});
+	});
+
+	describe("cache control", function(){
+		it("should set cache for index.html", function(done){
+			request("http://localhost:8080").get("/index.html")
+				.expect("Cache-Control", "max-age=36")
+				.expect(200, done);
+		});
+
+		it("should not set cache for non-index.html", function(done){
+			request("http://localhost:8080").get("/")
+				.end(function(err, res){
+					if(err){
+						return done(err);
+					}
+
+					expect(res.headers).toExcludeKey("Cache-Control");
+
+					done();
+				});
+
 		});
 	});
 });
