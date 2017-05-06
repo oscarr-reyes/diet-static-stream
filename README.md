@@ -60,9 +60,23 @@ GET: www.example.com/images -> Server/static/images.html OR Server/static/images
 
 * * *
 
-**cache [String] - Optional (Default: max-age=3600)**
+**cache [String|Function] - Optional (Default: max-age=3600)**
 
-Control-Cache value to set in header response
+Control-Cache value to set in header response, if function is provided then all requests are executed within this function passing $ signal, if funtion returns false then all necessary headers for cache will be excluded
+
+```JavaScript
+stream({
+	cache: function($){
+    	//Set cache only for index.html
+    	if($.url.pathname == "index.html"){
+        	return "max-age=36000";
+        }
+        
+        //Exclude cache headers for all requests that are not for index.html
+        return false;
+    }
+});
+```
 
 * * *
 
